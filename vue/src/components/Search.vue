@@ -1,10 +1,9 @@
 <template>
-    <div id="search">
+  <div id="search">
     <SearchBody />
-    <SearchLavel  />
+    <SearchLavel />
   </div>
 </template>
-
 
 <style scoped>
 #search {

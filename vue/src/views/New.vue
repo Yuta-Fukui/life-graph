@@ -36,11 +36,13 @@
           class="mx-4"
           inset
           vertical
-        ></v-divider>
-        <v-spacer></v-spacer>
+        />
+        <v-spacer />
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on">
+              New Item
+            </v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -51,16 +53,16 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.age" label="age"></v-text-field>
+                    <v-text-field v-model="editedItem.age" label="age" />
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.score" label="score"></v-text-field>
+                    <v-text-field v-model="editedItem.score" label="score" />
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.comment" label="comment"></v-text-field>
+                    <v-text-field v-model="editedItem.comment" label="comment" />
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.tilte" label="tilte"></v-text-field>
+                    <v-text-field v-model="editedItem.tilte" label="tilte" />
                   </v-col>
                   <!-- <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
@@ -70,9 +72,13 @@
             </v-card-text>
             <!-- ここから記入画面 -->
             <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              <v-spacer />
+              <v-btn color="blue darken-1" text @click="close">
+                Cancel
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="save">
+                Save
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -94,7 +100,9 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
+      <v-btn color="primary" @click="initialize">
+        Reset
+      </v-btn>
     </template>
   </v-data-table>
 </template>

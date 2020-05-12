@@ -2,9 +2,9 @@
 import { Line } from 'vue-chartjs'
 
 export default {
+  name: 'LifeChart',
   // propsとかで登録画面の情報を持ってくるかデータベースからデータ持ってこないとダメよね？？
   extends: Line,
-  name: 'lifeChart',
   data () {
     return {
       data: {

@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <!-- <Chart id="chart" msg="Welcome to Your Vue.js App" /> -->
-    <Vuetify/>
+    <Vuetify />
   </div>
 </template>
 
