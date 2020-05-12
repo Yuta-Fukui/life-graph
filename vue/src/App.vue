@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-app>
     <v-app-bar
       app
@@ -41,6 +42,20 @@
       <HelloWorld />
     </v-content>
   </v-app>
+=======
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">
+        Top
+      </router-link> |
+      <router-link to="/about">
+        About
+      </router-link>
+    </div>
+    <router-view />
+    <!-- <Top /> -->
+  </div>
+>>>>>>> 04b84d9767654233fbca679c8c516501739d0bc6
 </template>
 
 <script>
