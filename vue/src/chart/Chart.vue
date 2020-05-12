@@ -9,10 +9,12 @@ export default {
     return {
       data: {
         // ここに年齢が入るからlabelsの中は空にする
+        // ageが入る
         labels: ['A', 'B', 'C', 'D', 'E', 'F'],
         datasets: [
           {
             // ここにスコアが入るからlabelsの中は空にする
+            // scoreが入る
             data: [0, 70, 40, -80, 10, 100],
             borderColor: 'rgba(255, 99, 132, 0.2)',
             fill: false,
@@ -21,6 +23,7 @@ export default {
         ]
       },
       options: {
+        // コメントが入る予定
         tooltips: {
           callbacks: {
           }
@@ -48,7 +51,9 @@ export default {
               zeroLineColor: 'rgba(255, 99, 132, 1)'
             },
             ticks: {
+              // 最大値
               suggestedMax: 100,
+              // 最小値
               suggestedMin: -100
               // display: true
             }

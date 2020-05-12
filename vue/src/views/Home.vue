@@ -1,18 +1,21 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- <Chart id="chart" msg="Welcome to Your Vue.js App" /> -->
+    <Vuetify/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import Chart from '@/chart/Chart.vue'
+import Vuetify from 'vuetify'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    // Chart,
+    Vuetify
   },
 
   created () {
@@ -20,3 +23,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  /* #chart {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  } */
+</style>
