@@ -13,7 +13,7 @@ export default {
   name: 'Search',
   components: {
     SearchIput,
-    SearchResults,
-  },
+    SearchResults
+  }
 }
 </script>

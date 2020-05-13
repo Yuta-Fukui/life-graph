@@ -1,6 +1,6 @@
 <template>
   <div id="searchInput">
-  <!--  <div class="searchBar" >
+    <!--  <div class="searchBar" >
  input..text で一行入力用テキスト欄/placeholderで背景文字
        <input type="text" placeholder=検索したい氏名を入力してください>
     </div>
@@ -11,11 +11,12 @@
     <form action="" method="post">
       <!--post:送受信するHTMLmethod-->
       <input type="text" name="searchBar"
-        placeholder=検索したい氏名を入力してください size="30" />
-        <!--input..text で一行入力用テキスト欄/placeholderで背景文字-->
-      <input type="hidden" name="bid" value="%{BID}" />
+             placeholder="検索したい氏名を入力してください" size="30"
+      >
+      <!--input..text で一行入力用テキスト欄/placeholderで背景文字-->
+      <input type="hidden" name="bid" value="%{BID}">
       <!--type="hidden"非表示データを送信する-->
-      <input type="submit" name="ACMS_POST_2GET" value="検索" />
+      <input type="submit" name="ACMS_POST_2GET" value="検索">
       <!--type"submit"はフォームの送信ボタン作成-->
     </form>
 

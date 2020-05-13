@@ -1,5 +1,5 @@
 <template>
- <v-app id="inspire">
+  <v-app id="inspire">
     <v-card
       class="mx-auto"
       max-width="344"
@@ -8,7 +8,9 @@
       <v-list-item three-line>
         <v-list-item-content>
           <!-- <div class="overline mb-4">OVERLINE</div> -->
-          <v-list-item-title class="serch-title">検索</v-list-item-title>
+          <v-list-item-title class="serch-title">
+            検索
+          </v-list-item-title>
           <v-list-item-subtitle>こちらの検索ボタンから人生グラフを検索できます</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -16,10 +18,12 @@
           tile
           size="80"
           color="grey"
-        ></v-list-item-avatar>
+        />
       </v-list-item>
       <v-card-actions>
-        <v-btn text>検索する</v-btn>
+        <v-btn text>
+          検索する
+        </v-btn>
       </v-card-actions>
     </v-card>
     <v-card
@@ -30,7 +34,9 @@
       <v-list-item three-line>
         <v-list-item-content>
           <!-- <div class="overline mb-4">OVERLINE</div> -->
-          <v-list-item-title class="entry-title">登録</v-list-item-title>
+          <v-list-item-title class="entry-title">
+            登録
+          </v-list-item-title>
           <v-list-item-subtitle>こちらのボタンから人生グラフを登録できます</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -38,10 +44,12 @@
           tile
           size="80"
           color="grey"
-        ></v-list-item-avatar>
+        />
       </v-list-item>
       <v-card-actions>
-        <v-btn text>登録する</v-btn>
+        <v-btn text>
+          登録する
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-app>

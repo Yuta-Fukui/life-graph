@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   # MySQL
   db:
@@ -17,14 +16,6 @@ services:
     - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
     - 3306:3306
-  migratedb:
-    image: boxfuse/flyway:latest
-    volumes:
-      - ./flyway/sql:/flyway/sql
-      - ./flyway/conf:/flyway/conf
-    depends_on:
-      - mysqldb
-    command: migrate
   nginx:
     container_name: 'nginx'
     image: nginx:latest
