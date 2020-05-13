@@ -8,6 +8,12 @@
         About
       </router-link>
     </div>
+    <v-btn
+      color="primary"
+      depressed
+    >
+      Life Chart
+    </v-btn>
     <router-view />
   </div>
 </template>
