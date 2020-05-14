@@ -9,8 +9,8 @@ module.exports = {
     'rule-empty-line-before': [
       'always',
       {
-        except: 'inside-block',
-      },
-    ],
-  },
-};
+        except: 'inside-block'
+      }
+    ]
+  }
+}

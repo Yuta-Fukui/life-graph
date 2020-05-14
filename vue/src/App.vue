@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app">
+    <router-view />
+    <router-link to="/top">
+      ログイン後のTop画面
+    </router-link>
+    <router-link to="/top2">
+      ログイン前のTop画面
+    </router-link>
+    <router-link to="/reference">
+      参照
+    </router-link>
+  </v-app>
 </template>
 
-<style>
-#app {
-  color: #2c3e50;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
+<script>
+// import Login from './views/Login.vue'
 
-#nav {
-  padding: 30px;
-}
+// export default {
+//   name: 'App',
 
-#nav a {
-  color: #2c3e50;
-  font-weight: bold;
-}
+//   components: {
+//     Login
+//   },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+//   data: () => ({
+//     //
+//   })
+// }
+</script>

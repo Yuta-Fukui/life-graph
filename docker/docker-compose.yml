@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   # MySQL
   db:
@@ -13,8 +12,8 @@ services:
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-    - ./mysql/db/data:/var/lib/mysql
-    - ./mysql/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./mysql/data:/var/lib/mysql
+    - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
     - 3306:3306
   nginx:

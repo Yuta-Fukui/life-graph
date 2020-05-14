@@ -1,0 +1,54 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Life Graph CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - report
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: cd vue && npm ci
+    - run: cd vue && npm run build --if-present
+    - run: cd vue && npm run lint
+    - run: cd vue && npm run lint:css
+    - run: cd vue && npm test
+
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: mvn -B package --file api/pom.xml
+
+    - name: Slack Failure Notification
+      if: failure()
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_CHANNEL: チーム福飯
+        SLACK_USERNAME: build-check-チーム福飯
+        SLACK_ICON_EMOJI: ':man-gesturing-no:'
+        SLACK_COLOR: '#ff0000'
+        SLACK_MESSAGE: |
+          Build Failed. :sawajiri_erika: :bugkana2:
+          PR URL : ${{ github.event.pull_request.html_url }}
+        SLACK_TITLE: TeamX Java Build Result
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
