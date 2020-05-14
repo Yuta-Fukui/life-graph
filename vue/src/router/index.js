@@ -33,7 +33,7 @@ const routes = [
     path: '/new',
     name: 'New',
     component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/New.vue')
+      return import(/* webpackChunkName: "new" */ '../views/New.vue')
     }
   }
 ]

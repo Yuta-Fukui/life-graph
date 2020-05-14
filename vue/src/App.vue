@@ -38,7 +38,9 @@
     </v-app-bar>
 
     <v-content>
-      <Chart />
+      <v-container>
+        <Chart />
+      </v-container>
       <New />
       <rooter-link to="/new" />
       <Login />

@@ -8,11 +8,11 @@ export default {
   data () {
     return {
       data: {
-        // ここに年齢が入るからlabelsの中は空にする
+        // ここに年齢が入るからlabelsの中は空にする(age)
         labels: ['A', 'B', 'C', 'D', 'E', 'F'],
         datasets: [
           {
-            // ここにスコアが入るからlabelsの中は空にする
+            // ここにスコアが入るからlabelsの中は空にする(score)
             data: [0, 70, 40, -80, 10, 100],
             borderColor: 'rgba(255, 99, 132, 0.2)',
             fill: false,
