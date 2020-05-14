@@ -72,6 +72,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .logo{
   text-align: center;
