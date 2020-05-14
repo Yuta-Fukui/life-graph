@@ -38,33 +38,43 @@
     </v-app-bar>
 
     <v-content>
-      <Top />
-      <router-link to="/top" />
+      <router-view />
+      <router-link to="/top">
+        ログイン後のTop画面
+      </router-link>
+      <router-link to="/top2">
+        ログイン前のTop画面
+      </router-link>
+      <router-link to="/reference">
+        参照
+      </router-link>
+      <!-- <Top />
+      <Top2 />
       <Chart />
       <New />
-      <rooter-link to="/new" />
       <Login />
-      <router-link to="/login" />
-      <Reference />
+      <Reference /> -->
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Top from '../src/views/Top.vue'
-import Chart from '../src/chart/Chart.vue'
-import New from '../src/views/New.vue'
-import Login from './views/Login.vue'
-import Reference from './views/Reference.vue'
+// import Top from '../src/views/Top.vue'
+// import Top2 from '../src/views/Top2.vue'
+// import Chart from '../src/chart/Chart.vue'
+// import New from '../src/views/New.vue'
+// import Login from './views/Login.vue'
+// import Reference from './views/Reference.vue'
 
 export default {
   name: 'App',
   components: {
-    Top,
-    Chart,
-    New,
-    Login,
-    Reference
+    // Top,
+    // Top2,
+    // Chart,
+    // New,
+    // Login,
+    // Reference
   }
 }
 </script>

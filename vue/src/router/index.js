@@ -13,6 +13,15 @@ const routes = [
     //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
   },
   {
+    path: '/top2',
+    name: 'Top2',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Top2.vue')
+    }
+    // function () {
+    //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
+  },
+  {
     path: '/login', // new add
     name: 'Login', // new add
     component: function () {

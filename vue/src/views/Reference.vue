@@ -1,8 +1,10 @@
 <template>
   <div id="reference">
+    <router-link to="">
     <v-btn id="returnBtn">
-      <v-icon />戻る
+      戻る
     </v-btn>
+    </router-link>
     <div id="refChart">
       <Chart />
     </div>
@@ -25,7 +27,7 @@ export default {
 </script>
 
 <style>
-/* #returnBtn    {
+#returnBtn    {
   background: #FFFFFF;
   font-family: Roboto;
   font-style: normal;
@@ -33,10 +35,12 @@ export default {
   font-size: 18px;
   line-height: 21px;
   /* identical to box height */
-  /* color: #26A69A;}
+  color: #26A69A;
+}
 
 #refChart     {
   width: 300px;
   height: 300px;
-  margin: 0 auto;} */
+  margin: 0 auto;
+}
 </style>
