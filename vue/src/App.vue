@@ -59,22 +59,16 @@
 </template>
 
 <script>
-// import Top from '../src/views/Top.vue'
-// import Top2 from '../src/views/Top2.vue'
-// import Chart from '../src/chart/Chart.vue'
-// import New from '../src/views/New.vue'
 // import Login from './views/Login.vue'
-// import Reference from './views/Reference.vue'
 
-export default {
-  name: 'App',
-  components: {
-    // Top,
-    // Top2,
-    // Chart,
-    // New,
-    // Login,
-    // Reference
-  }
-}
+// export default {
+//   name: 'App',
+
+//   components: {
+//     Login,
+//     },
+//   data: () => ({
+//
+//   })
+// }
 </script>
