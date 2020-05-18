@@ -1,0 +1,43 @@
+<template>
+  <div>
+    <v-app-bar
+      color="#26A69A"
+      dark
+    >
+      <v-toolbar-title
+        class="font-weight-bold"
+      >
+        Life Graph
+      </v-toolbar-title>
+      <v-toolbar-items>
+        <v-btn
+          text
+          to="/top"
+        >
+          トップ
+        </v-btn>
+        <v-btn
+          text
+          to="/Search.vue"
+        >
+          検索
+        </v-btn>
+      </v-toolbar-items>
+      <v-spacer />
+      <v-toolbar-items>
+        <p>User Name</p>
+        <p>一般ユーザー</p>
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        />
+        <v-btn
+          text
+        >
+          ログアウト
+        </v-btn>
+      </v-toolbar-items>
+    </v-app-bar>
+  </div>
+</template>

@@ -1,10 +1,14 @@
 <template>
   <v-container>
+    <!-- ヘッダーカラム、
+    各カラムのデータ呼び出し
+    奥ゆきの指定 -->
     <v-data-table
       :headers="headers"
       :items="chartSets"
-      class="elevation-1"
+      class="elevation-2"
     >
+      <!-- ヘッダー部分 -->
       <template v-slot:top>
         <v-toolbar flat color="white">
           <v-toolbar-title>My Life Graph</v-toolbar-title>
@@ -14,12 +18,14 @@
             vertical
           />
           <v-spacer />
+          <!-- v-dialogでモーダル表示部分の設定 -->
           <v-dialog v-model="dialog" max-width="500px">
+            <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
             <template v-slot:activator="{ on }">
               <v-btn
                 class="white--text"
                 large
-                color="teal"
+                color="#64D8CB"
                 v-on="on"
               >
                 追加する
@@ -101,6 +107,7 @@
 export default {
   dialog: false,
   data: () => ({
+    // データテーブルのカラムとvalue名
     headers: [
       {
         text: '年齢',
@@ -112,18 +119,16 @@ export default {
       { text: 'タイトル', value: 'title' },
       { text: '編集', value: 'actions', sortable: false }
     ],
+    // chartSets部分にage,score,title,commentの配列を渡す
+    // 以下の型でstoreでデータ管理
     chartSets: [
-      {
-        age: 10,
-        score: 56,
-        comment: 'コメントがここにきます',
-        title: '苦難の人生'
-      },
-      {
-        age: 20,
-        score: 20,
-        comment: 'コメントがここにきます'
-      }
+      // {
+      //   headersets部分で定義したvalue
+      //   age: 20,
+      //   score: 12,
+      //   comment: 'コメント',
+      //   title: 'タイトル'
+      // }
     ],
     editedIndex: -1,
     editedItem: {
@@ -140,6 +145,7 @@ export default {
     }
   }),
   computed: {
+    // モーダル表示タイトルを条件分岐で変更。インデックス数値が-1だった場合追加する、1以上の場合（すでに登録されている)編集すると表示される
     formTitle () {
       return this.editedIndex === -1 ? '追加する' : '編集する'
     }
@@ -150,17 +156,25 @@ export default {
     }
   },
   methods: {
+    // モーダルのフォームデフォルトに登録済みのデータを表示
     editItem (item) {
       this.editedIndex = this.chartSets.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      // storeのデータを書き込むdispatchでstoreのアクションを呼び込む
+      // const editedItems = this.editedItem
+      // this.$store.dispatch('chart/edit,editedItems)
       this.dialog = true
+      // storeのデータを書き込むdispatchでstoreのアクションを呼び込む
     },
+    // index番号と一致するレコードの削除
     deleteItem (item) {
       const index = this.chartSets.indexOf(item)
       confirm('本当に削除しますか？') && this.desserts.splice(index, 1)
     },
+    // モーダルを閉じ,
     close () {
       this.dialog = false
+      // editedItemの更新
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
@@ -170,7 +184,7 @@ export default {
       // index番号が0以上の場合、index番号に当たるitemを変更させる
       if (this.editedIndex > -1) {
         Object.assign(this.chartSets[this.editedIndex], this.editedItem)
-      // -1の場合は、defalut値を返す。
+      // それ以外の新規追加の場合は、editedItemをpushする
       } else {
         this.chartSets.push(this.editedItem)
       }

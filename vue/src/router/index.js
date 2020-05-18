@@ -28,15 +28,6 @@ const routes = [
     //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
   },
   {
-    path: '/top2',
-    name: 'Top2',
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/Top2.vue')
-    }
-    // function () {
-    //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
-  },
-  {
     path: '/about',
     name: 'About',
     //  route level code-splitting
@@ -58,6 +49,13 @@ const routes = [
     name: 'Reference',
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Reference.vue')
+    }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Search.vue')
     }
   }
 ]

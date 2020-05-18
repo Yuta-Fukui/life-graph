@@ -1,42 +1,81 @@
 <template>
-  <div id="reference">
-    <v-btn id="returnBtn">
-      <v-icon />戻る
-    </v-btn>
-    <div id="refChart">
-      <Chart />
-    </div>
-  </div>
+  <v-app id="reference">
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-btn id="returnBtn" to="/search" outlined large color="#26A69A">
+            <v-icon />戻る
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div id="refChart" style="width:750px;height:auto" justify="center">
+            <Chart />
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
 import Chart from '../chart/Chart'
 export default {
   name: 'Reference',
+  //     extends: Radar,
   components: {
     Chart
   },
+  //   data () {
+  //     return {
+  //       data: {
+  //         labels: [],
+  //         datasets: [
+  //           {
+  //             data: [],
+  //           },
+  //         ]
+  //       },
+  //       options: {
+  //         responsive: true,
+  //         scale: {
+  //           ticks: {
+  //             maxTicksLimit: 100,
+  //             beginAtZero: true,
+  //             max:100,
+  //             min:-100,
+  //           }
+  //         },
+  //         legend: {
+  //           display:false,
+  //         }
+  //       }
+  //     }
+  //   },
+  //   mounted () {
+  //     this.get();
+  //     this.renderChart(this.data, this.options);
+  //    // this.$store.dispatch('updateSkillCategories')
+  //   },
+  //   methods:{
+  //     getSkills(){
+  //       const backSkillInfo = this.$store.getters.get('back-end')
+  //       console.log(backSkillInfo)
+  //       backSkillInfo.skills.forEach((skill) => {
+  //         this.data.labels.push(skill.name),
+  //         this.data.datasets[0].data.push(skill.score)
+  //       })
+  //     }
+  //   }
+  // }
 
   data: () => ({
     //
   })
 }
-
 </script>
 
 <style>
-/* #returnBtn    {
-  background: #FFFFFF;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  /* identical to box height */
-  /* color: #26A69A;}
 
-#refChart     {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;} */
 </style>
