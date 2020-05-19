@@ -32,32 +32,38 @@
               </v-card-title>
               <v-card-text>
                 <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.age"
-                        label="年齢"
-                      />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.score"
-                        label="スコア"
-                      />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.comment"
-                        label="コメント"
-                      />
-                    </v-col>
-                    <!-- <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.title"
-                        label="タイトル"
-                      />
-                    </v-col> -->
-                  </v-row>
+                  <v-form
+                    ref="form"
+                  >
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.age"
+                          label="年齢"
+                          :rules="[required]"
+                        />
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.score"
+                          label="スコア"
+                          :rules="[required]"
+                        />
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.comment"
+                          label="コメント"
+                        />
+                      </v-col>
+                      <!-- <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.title"
+                          label="タイトル"
+                        />
+                      </v-col> -->
+                    </v-row>
+                  </v-form>
                 </v-container>
               </v-card-text>
               <v-card-actions>
@@ -201,7 +207,9 @@ export default {
       score: 0,
       comment: ''
     },
-    defaultTitle: 'コメントが入ります'
+    // valueがない場合は右のエラー文を表示する。
+    required: value => !!value || '必ず入力してください'
+    // defaultTitle: 'コメントが入ります'
   }),
   computed: {
     // モーダル表示タイトルを条件分岐で変更。インデックス数値が-1だった場合追加する、1以上の場合（すでに登録されている)編集すると表示される
@@ -240,14 +248,17 @@ export default {
     },
     save () {
       // index番号が0以上の場合、index番号に当たるitemを変更させる
-      if (this.editedIndex > -1) {
-        Object.assign(this.chartSets[this.editedIndex], this.editedItem)
-      // それ以外の新規追加の場合は、editedItemをpushする
-      } else {
-        this.chartSets.push(this.editedItem)
+      if (this.$refs.form.validate()) {
+        if (this.editedIndex > -1) {
+          Object.assign(this.chartSets[this.editedIndex], this.editedItem)
+          // それ以外の新規追加の場合は、editedItemをpushする
+        } else {
+          this.chartSets.push(this.editedItem)
+        }
+        this.close()
       }
-      this.close()
     },
+
     // editTitle (title) {
     //   this.editedTitle = Object.assign({}, title)
     //   this.titleDialog = true

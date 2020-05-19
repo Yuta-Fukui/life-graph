@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import { Store } from 'vuex'
 
 Vue.use(VueRouter)
 
@@ -66,4 +67,12 @@ const router = new VueRouter({
   routes
 })
 
+// login画面ではないかつtokenを持っていない場合はlogin画面に飛ぶ
+// router.beforeEach((to, form, next) => {
+//   if (to.path !== '/login' && Store.state.auth.token === '') {
+//     next('./login')
+//   } else {
+//     next()
+//   }
+// })
 export default router
