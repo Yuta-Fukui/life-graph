@@ -12,11 +12,6 @@
       <template v-slot:top>
         <v-toolbar flat color="white">
           <v-toolbar-title>My Life Graph</v-toolbar-title>
-          <v-divider
-            class="mx-4"
-            inset
-            vertical
-          />
           <v-spacer />
           <!-- v-dialogでモーダル表示部分の設定 -->
           <v-dialog v-model="dialog" max-width="500px">
@@ -56,12 +51,12 @@
                         label="コメント"
                       />
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <!-- <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.title"
                         label="タイトル"
                       />
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -100,6 +95,64 @@
         </v-icon>
       </template>
     </v-data-table>
+    <!-- <v-data-table
+      :headers="titleHeader"
+      :items="title"
+      class="elevation-2"
+    >
+      <v-toolbar flat color="white">
+        <v-spacer />
+        <v-dialog v-model="titleDialog" max-width="500px">
+          <template v-slot:activator="{ on }">
+            <v-btn
+              class="white-text"
+              large
+              color="#64D8CB"
+              v-on="on"
+            >
+              タイトルを編集する
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span>タイトルを編集する</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-filed
+                      v-model="editedTitle"
+                      label="タイトル"
+                    />
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                color="teal"
+                text @click="close"
+              >
+                キャンセル
+              </v-btn>
+              <v-btn
+                color="teal"
+                text @click="save"
+              >
+                登録する
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </v-data-table> -->
+    <v-btn
+      @click="createChart"
+    >
+      確定
+    </v-btn>
   </v-container>
 </template>
 
@@ -116,7 +169,6 @@ export default {
       },
       { text: 'スコア', value: 'score' },
       { text: 'コメント', value: 'comment' },
-      { text: 'タイトル', value: 'title' },
       { text: '編集', value: 'actions', sortable: false }
     ],
     // chartSets部分にage,score,title,commentの配列を渡す
@@ -130,19 +182,26 @@ export default {
       //   title: 'タイトル'
       // }
     ],
+    // titleHeader: {
+    //   text: 'タイトル',
+    //   value: 'title'
+    // },
+    // title: '',
     editedIndex: -1,
     editedItem: {
       age: 0,
       score: 0,
-      comment: '',
-      title: ''
+      comment: ''
     },
+    // editedTitle: {
+    //   title: ''
+    // },
     defaultItem: {
       age: 0,
       score: 0,
-      comment: '',
-      title: ''
-    }
+      comment: ''
+    },
+    defaultTitle: 'コメントが入ります'
   }),
   computed: {
     // モーダル表示タイトルを条件分岐で変更。インデックス数値が-1だった場合追加する、1以上の場合（すでに登録されている)編集すると表示される
@@ -154,22 +213,21 @@ export default {
     dialog (val) {
       val || this.close()
     }
+    // titleDialog (val) {
+    //   val || this.titleClose()
+    // }
   },
   methods: {
     // モーダルのフォームデフォルトに登録済みのデータを表示
     editItem (item) {
       this.editedIndex = this.chartSets.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      // storeのデータを書き込むdispatchでstoreのアクションを呼び込む
-      // const editedItems = this.editedItem
-      // this.$store.dispatch('chart/edit,editedItems)
       this.dialog = true
-      // storeのデータを書き込むdispatchでstoreのアクションを呼び込む
     },
     // index番号と一致するレコードの削除
     deleteItem (item) {
       const index = this.chartSets.indexOf(item)
-      confirm('本当に削除しますか？') && this.desserts.splice(index, 1)
+      confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
     },
     // モーダルを閉じ,
     close () {
@@ -189,6 +247,21 @@ export default {
         this.chartSets.push(this.editedItem)
       }
       this.close()
+    },
+    // editTitle (title) {
+    //   this.editedTitle = Object.assign({}, title)
+    //   this.titleDialog = true
+    // },
+    // titleClose () {
+    //   this.titleDialog = false
+    //   this.editedTitle = Object.assign({}, this.defaultTitle)
+    //   // indexを-1にする処理はいらないと思う
+    // },
+    createChart () {
+      // メソッド内でconst定義している場合、thisは不要
+      // setContentsをdispatchして、lifeChartを渡す。
+      this.$store.dispatch('setContents', this.chartSets)
+      this.$router.push('/top')
     }
   }
 }
