@@ -1,7 +1,7 @@
-INSERT INTO `User` (
+INSERT INTO `users` (
   `name`,
   `password`,
-  `mail_address`
+  `email`
 ) VALUES
   ('taro', '12345', 'seattle'),
   ('Hanako', 'pass', 'academy'),
