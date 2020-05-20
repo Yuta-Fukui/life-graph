@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable().authorizeRequests().antMatchers("/search", "/search/test").permitAll().anyRequest()
-        .authenticated();
+    http.csrf().disable().authorizeRequests().antMatchers("/search/**").permitAll().anyRequest().authenticated();
   }
 }
