@@ -41,6 +41,7 @@ INSERT INTO `roles` (
   ('ROLE_MODERATOR'),
   ('ROLE_ADMIN');
 
+
   CREATE TABLE `parent_chart` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` bigint NOT NULL,
