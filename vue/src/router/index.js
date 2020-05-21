@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import { Store } from 'vuex'
+// 未ログイン状態の時にログイン画面に飛ばす設定
+// import Store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,9 @@ const routes = [
     name: 'Login', // new add
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    },
+    meta: {
+      isPublic: true
     }
   },
   {
@@ -17,6 +21,9 @@ const routes = [
     name: 'SignUp', // new add
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/SignUp.vue')
+    },
+    meta: {
+      isPublic: true
     }
   },
   {
@@ -53,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/search',
+    path: '/life-graph/lists',
     name: 'Search',
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Search.vue')
@@ -67,12 +74,14 @@ const router = new VueRouter({
   routes
 })
 
-// login画面ではないかつtokenを持っていない場合はlogin画面に飛ぶ
-// router.beforeEach((to, form, next) => {
-//   if (to.path !== '/login' && Store.state.auth.token === '') {
-//     next('./login')
-//   } else {
+// 未ログイン状態の時にログイン画面に飛ばす設定
+// router.beforeEach((to, from, next) => {
+//   // ログイン画面以外の画面かつ未ログインの時
+//   if (to.matched.some(page => page.meta.isPublic) || Store.state.account.token) {
 //     next()
+//   } else {
+//     next('/')
 //   }
 // })
+
 export default router

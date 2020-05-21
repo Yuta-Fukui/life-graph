@@ -24,7 +24,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <router-link to="/search">
+              <router-link to="/life-graph/lists">
                 <v-btn class="#777575--text" color="#FFFFFF">
                   検索する
                 </v-btn>
@@ -92,7 +92,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <router-link to="/search">
+              <router-link to="/life-graph/lists">
                 <v-btn class="#777575--text" color="#FFFFFF">
                   検索する
                 </v-btn>

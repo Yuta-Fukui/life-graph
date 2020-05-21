@@ -14,19 +14,20 @@
         <v-form
           ref="form"
         >
-          <v-text-field v-model="email" type="mail" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" />
+          <v-text-field v-model="username" type="username" prepend-icon="mdi-gmail" label="ユーザーネーム" :rules="[required]" color="teal" />
           <!-- mdi-eye-offの部分は時間がなければなくします -->
-          <v-text-field v-model="password" type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" :rules="[required]" />
+          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="teal" @click:append="show = !show" />
           <v-card-actions>
             <v-btn outlined large color="#26A69A" to="/signup">
-              新規登録
+              新規登録はこちら
             </v-btn>
             <v-spacer />
             <v-btn large color="#26A69A" class="log-btn" @click="login()">
-              ログイン
+              ログインする
             </v-btn>
           </v-card-actions>
         </v-form>
+        <p>*登録済みの方はユーザーネームとパスワードを入力するとログインができます</p>
       </v-card-text>
     </v-card>
   </div>
@@ -37,18 +38,20 @@ export default {
   layout: 'blank', // layouts/blank.vueを使用
   middleware: ['auth'],
   data: () => ({
-    email: '',
-    emailRules: value => {
-      const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      return pattern.test(value) || 'メールアドレスの形式が正しくありません'
-    },
+    username: '',
+    // email: '',
+    // emailRules: value => {
+    //   const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    //   return pattern.test(value) || 'メールアドレスの形式が正しくありません'
+    // },
     password: '',
-    required: value => !!value || '必ず入力してください'
+    required: value => !!value || '必ず入力してください',
+    show: false
   }),
   // token関数でtokenの値を取得する
   computed: {
     token () {
-      return this.$store.state.auth.token
+      return this.$store.state.account.token
     }
   },
   // token関数の監視を行う
@@ -60,8 +63,7 @@ export default {
   methods: {
     login () {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch('fetchLogin', { email: this.email, password: this.password })
-        this.$router.push('/top')
+        this.$store.dispatch('fetchLogin', { username: this.username, password: this.password })
       }
     }
     // async login () {

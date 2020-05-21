@@ -15,11 +15,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lifegraph.team20.Account.Account;
 import com.lifegraph.team20.models.ERole;
 import com.lifegraph.team20.models.Role;
 import com.lifegraph.team20.models.User;
@@ -27,10 +30,12 @@ import com.lifegraph.team20.payload.request.LoginRequest;
 import com.lifegraph.team20.payload.request.SignupRequest;
 import com.lifegraph.team20.payload.response.JwtResponse;
 import com.lifegraph.team20.payload.response.MessageResponse;
+import com.lifegraph.team20.repository.AccountRepository;
 import com.lifegraph.team20.repository.RoleRepository;
 import com.lifegraph.team20.repository.UserRepository;
 import com.lifegraph.team20.security.jwt.JwtUtils;
 import com.lifegraph.team20.security.services.UserDetailsImpl;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -50,13 +55,16 @@ public class AuthController {
 	PasswordEncoder encoder;
 
 	@Autowired
+	AccountRepository accountRepository;
+
+	@Autowired
 	JwtUtils jwtUtils;
 
-	@PostMapping("/signin")
+	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -75,11 +83,11 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Username is already taken!"));
-		}
+//		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+//			return ResponseEntity
+//					.badRequest()
+//					.body(new MessageResponse("Error: Username is already taken!"));
+//		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
@@ -126,5 +134,14 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Account> account(@PathVariable("id") Integer id) {
+
+		// IDとユーザ名と権限名でオブジェクト作ってView側に返してる
+		Account account = accountRepository.selectAccount(id);
+
+		return ResponseEntity.ok(account);
 	}
 }

@@ -11,14 +11,16 @@
         </h1>
       </v-card-title>
       <v-card-text>
-        <v-form>
-          <v-text-field type="userName" prepend-icon="mdi-account-circle" label="アカウント名" />
-          <v-text-field type="mail" prepend-icon="mdi-gmail" label="メールアドレス" />
+        <v-form
+          ref="form"
+        >
+          <v-text-field v-model="username" prepend-icon="mdi-account-circle" label="アカウント名" :rules="[required]" color="teal" />
+          <v-text-field v-model="email" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" color="teal" />
           <!-- mdi-eye-offの部分はブラッシュアップにまわす -->
-          <v-text-field type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" />
+          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required, max_length]" color="teal" @click:append="show = !show" />
           <v-card-actions>
-            <v-btn large color="#26A69A" class="signup-btn" to="/top">
-              新規登録
+            <v-btn large color="#26A69A" class="signup-btn" @click="signup()">
+              新規登録をする
             </v-btn>
           </v-card-actions>
         </v-form>
@@ -27,11 +29,38 @@
   </div>
 </template>
 
-<style scoped>
-</style>
-
 <script>
-//
+import axios from 'axios'
+
+export default {
+  data: () => ({
+    username: '',
+    email: '',
+    // メアドのバリデーション規則
+    emailRules: value => {
+      const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return pattern.test(value) || 'メールアドレスの形式が正しくありません'
+    },
+    password: '',
+    max_length: value => value.length >= 8 || '8文字以上で入力してください',
+    // 基本バリデーション
+    required: value => !!value || '必ず入力してください',
+    show: false
+  }),
+  methods: {
+    signup () {
+      if (this.$refs.form.validate()) {
+        const url = '/api/auth/signup'
+        axios.post(url, {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
+        this.$router.push('/')
+      }
+    }
+  }
+}
 </script>
 <style>
 .logo{
