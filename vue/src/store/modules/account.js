@@ -2,18 +2,21 @@ import axios from 'axios'
 
 export default {
   state: {
-    token: ''
+    accountInfo: ''
   },
   mutations: {
-    setLogin (state, data) {
-      state.token = data.token
+    setAccountInfo (state, payload) {
+      state.accountInfo = payload
+    },
+    resetAccountInfo (state) {
+      state.accountInfo = ''
     }
   },
   actions: {
-    fetchLogin ({ commit }, data) {
-      const url = '/api/auth/signin'
-      axios.post(url, data).then((res) => {
-        commit('setLogin', res.data)
+    async accountAction ({ commit }, userId) {
+      const url = 'api/auth/accounts/' + userId
+      await axios.get(url).then((res) => {
+        commit('setAccountInfo', res.data)
       })
     }
   }

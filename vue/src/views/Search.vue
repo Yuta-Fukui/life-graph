@@ -1,5 +1,6 @@
 <template>
   <v-app id="search">
+    <Header />
     <br>
     <v-card
       width="1200"
@@ -119,6 +120,7 @@
 <script>
 import moment from 'moment'
 import VueDaterangePicker from 'vue-daterange-picker'
+import Header from '../components/Header.vue'
 
 moment.locale('ja')
 
@@ -126,7 +128,8 @@ export default {
   name: 'Table',
   dialog: false,
   components: {
-    VueDaterangePicker
+    VueDaterangePicker,
+    Header
   },
   data: () => ({
     descriptionLimit: 60,

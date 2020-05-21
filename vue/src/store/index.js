@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import account from './modules/account.js'
+import auth from './modules/auth.js'
 import chart from './modules/chart.js'
+import account from './modules/account.js'
 
 // import axios from 'axios'
-
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
-    account,
-    chart
+    auth,
+    chart,
+    account
   }
 })

@@ -1,69 +1,140 @@
 <template>
-  <v-container>
-    <!-- ヘッダーカラム、
-    各カラムのデータ呼び出し
-    奥ゆきの指定 -->
-    <v-data-table
-      :headers="headers"
-      :items="chartSets"
-      class="elevation-2"
-    >
-      <!-- ヘッダー部分 -->
-      <template v-slot:top>
+  <v-app id="new">
+    <Header />
+    <v-container>
+      <!-- ヘッダーカラム、
+      各カラムのデータ呼び出し
+      奥ゆきの指定 -->
+      <v-data-table
+        :headers="headers"
+        :items="chartSets"
+        class="elevation-2"
+      >
+        <!-- ヘッダー部分 -->
+        <template v-slot:top>
+          <v-toolbar flat color="white">
+            <v-toolbar-title>My Life Graph</v-toolbar-title>
+            <v-spacer />
+            <!-- v-dialogでモーダル表示部分の設定 -->
+            <v-dialog v-model="dialog" max-width="500px">
+              <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  class="white--text"
+                  large
+                  color="#64D8CB"
+                  v-on="on"
+                >
+                  追加する
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="headline">{{ formTitle }}</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-form
+                      ref="form"
+                    >
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.age"
+                            label="年齢"
+                            :rules="[required]"
+                          />
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.score"
+                            label="スコア"
+                            :rules="[required]"
+                          />
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.comment"
+                            label="コメント"
+                          />
+                        </v-col>
+                        <!-- <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.title"
+                            label="タイトル"
+                          />
+                        </v-col> -->
+                      </v-row>
+                    </v-form>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    color="teal"
+                    text @click="close"
+                  >
+                    キャンセル
+                  </v-btn>
+                  <v-btn
+                    color="teal"
+                    text @click="save"
+                  >
+                    登録する
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-toolbar>
+        </template>
+        <template v-slot:item.actions="{ item }">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editItem(item)"
+          >
+            mdi-pencil
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteItem(item)"
+          >
+            mdi-delete
+          </v-icon>
+        </template>
+      </v-data-table>
+      <!-- <v-data-table
+        :headers="titleHeader"
+        :items="title"
+        class="elevation-2"
+      >
         <v-toolbar flat color="white">
-          <v-toolbar-title>My Life Graph</v-toolbar-title>
           <v-spacer />
-          <!-- v-dialogでモーダル表示部分の設定 -->
-          <v-dialog v-model="dialog" max-width="500px">
-            <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
+          <v-dialog v-model="titleDialog" max-width="500px">
             <template v-slot:activator="{ on }">
               <v-btn
-                class="white--text"
+                class="white-text"
                 large
                 color="#64D8CB"
                 v-on="on"
               >
-                追加する
+                タイトルを編集する
               </v-btn>
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ formTitle }}</span>
+                <span>タイトルを編集する</span>
               </v-card-title>
               <v-card-text>
                 <v-container>
-                  <v-form
-                    ref="form"
-                  >
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.age"
-                          label="年齢"
-                          :rules="[required]"
-                        />
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.score"
-                          label="スコア"
-                          :rules="[required]"
-                        />
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.comment"
-                          label="コメント"
-                        />
-                      </v-col>
-                      <!-- <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.title"
-                          label="タイトル"
-                        />
-                      </v-col> -->
-                    </v-row>
-                  </v-form>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-filed
+                        v-model="editedTitle"
+                        label="タイトル"
+                      />
+                    </v-col>
+                  </v-row>
                 </v-container>
               </v-card-text>
               <v-card-actions>
@@ -84,86 +155,24 @@
             </v-card>
           </v-dialog>
         </v-toolbar>
-      </template>
-      <template v-slot:item.actions="{ item }">
-        <v-icon
-          small
-          class="mr-2"
-          @click="editItem(item)"
-        >
-          mdi-pencil
-        </v-icon>
-        <v-icon
-          small
-          @click="deleteItem(item)"
-        >
-          mdi-delete
-        </v-icon>
-      </template>
-    </v-data-table>
-    <!-- <v-data-table
-      :headers="titleHeader"
-      :items="title"
-      class="elevation-2"
-    >
-      <v-toolbar flat color="white">
-        <v-spacer />
-        <v-dialog v-model="titleDialog" max-width="500px">
-          <template v-slot:activator="{ on }">
-            <v-btn
-              class="white-text"
-              large
-              color="#64D8CB"
-              v-on="on"
-            >
-              タイトルを編集する
-            </v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span>タイトルを編集する</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-filed
-                      v-model="editedTitle"
-                      label="タイトル"
-                    />
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn
-                color="teal"
-                text @click="close"
-              >
-                キャンセル
-              </v-btn>
-              <v-btn
-                color="teal"
-                text @click="save"
-              >
-                登録する
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </v-data-table> -->
-    <v-btn
-      @click="createChart"
-    >
-      確定
-    </v-btn>
-  </v-container>
+      </v-data-table> -->
+      <v-btn
+        @click="createChart"
+      >
+        確定
+      </v-btn>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
+import Header from '../components/Header.vue'
+
 export default {
+  name: 'New',
+  components: {
+    Header
+  },
   dialog: false,
   data: () => ({
     // データテーブルのカラムとvalue名

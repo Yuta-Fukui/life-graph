@@ -14,7 +14,7 @@
         <v-form
           ref="form"
         >
-          <v-text-field v-model="username" type="username" prepend-icon="mdi-gmail" label="ユーザーネーム" :rules="[required]" color="teal" />
+          <v-text-field v-model="email" type="email" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" color="teal" />
           <!-- mdi-eye-offの部分は時間がなければなくします -->
           <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="teal" @click:append="show = !show" />
           <v-card-actions>
@@ -38,12 +38,11 @@ export default {
   layout: 'blank', // layouts/blank.vueを使用
   middleware: ['auth'],
   data: () => ({
-    username: '',
-    // email: '',
-    // emailRules: value => {
-    //   const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    //   return pattern.test(value) || 'メールアドレスの形式が正しくありません'
-    // },
+    email: '',
+    emailRules: value => {
+      const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return pattern.test(value) || 'メールアドレスの形式が正しくありません'
+    },
     password: '',
     required: value => !!value || '必ず入力してください',
     show: false
@@ -51,7 +50,7 @@ export default {
   // token関数でtokenの値を取得する
   computed: {
     token () {
-      return this.$store.state.account.token
+      return this.$store.state.auth.token
     }
   },
   // token関数の監視を行う
@@ -63,7 +62,7 @@ export default {
   methods: {
     login () {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch('fetchLogin', { username: this.username, password: this.password })
+        this.$store.dispatch('fetchLogin', { email: this.email, password: this.password })
       }
     }
     // async login () {

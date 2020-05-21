@@ -77,7 +77,7 @@ const router = new VueRouter({
 // 未ログイン状態の時にログイン画面に飛ばす設定
 // router.beforeEach((to, from, next) => {
 //   // ログイン画面以外の画面かつ未ログインの時
-//   if (to.matched.some(page => page.meta.isPublic) || Store.state.account.token) {
+//   if (to.matched.some(page => page.meta.isPublic) || Store.state.auth.token) {
 //     next()
 //   } else {
 //     next('/')

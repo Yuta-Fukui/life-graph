@@ -1,5 +1,6 @@
 <template>
   <v-app id="reference">
+    <Header />
     <v-container>
       <v-row>
         <v-col>
@@ -21,11 +22,14 @@
 
 <script>
 import Chart from '../chart/Chart'
+import Header from '../components/Header.vue'
+
 export default {
   name: 'Reference',
   //     extends: Radar,
   components: {
-    Chart
+    Chart,
+    Header
   },
   //   data () {
   //     return {

@@ -1,10 +1,9 @@
 <template>
   <v-app id="top">
+    <Header />
     <v-container>
       <!-- <p v-if="login"> -->
-      <v-row style="height: 450px;"
-             justify="center" align-content="center"
-      >
+      <v-row style="height: 450px;" justify="center" align-content="center">
         <v-col cols="12" sm="6" md="4">
           <v-card
             id="topSearchAft"
@@ -70,9 +69,7 @@
       </v-row>
       <!-- </p> -->
       <!-- <p v-else> -->
-      <v-row style="height: 450px;"
-             justify="center" align-content="center"
-      >
+      <v-row style="height: 450px;" justify="center" align-content="center">
         <v-col cols="12" sm="6" md="4">
           <v-card
             id="topSearchAft"
@@ -133,7 +130,7 @@
 </template>
 
 <script>
-
+import Header from '../components/Header.vue'
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import Chart from '../chart/Chart'
@@ -145,7 +142,8 @@ import Chart from '../chart/Chart'
 export default {
   name: 'Top',
   components: {
-    Chart
+    Chart,
+    Header
   },
 
   data: () => ({
