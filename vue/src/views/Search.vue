@@ -65,11 +65,6 @@
           </v-col>
           <v-col>
             <v-card-text>
-              グラフタイトル
-            </v-card-text>
-          </v-col>
-          <v-col>
-            <v-card-text>
               作成日時
             </v-card-text>
           </v-col>
@@ -139,6 +134,7 @@ export default {
     search: null,
     e6: [],
     e7: [],
+    items: { name: '', created_at: '' },
     searchByData: [
       '1日前', '1週間前', '1ヶ月前', 'それより前'
     ],
@@ -164,6 +160,9 @@ export default {
 
         return Object.assign({}, entry, { Description })
       })
+    },
+    search () {
+      return this.$store.state.search.search
     }
   },
   watch: {
@@ -177,28 +176,26 @@ export default {
       this.isLoading = true
 
       // Lazily load input items
-    //   fetch('https://api.publicapis.org/entries')
-    //     .then(res => res.json())
-    //     .then(res => {
-    //       const { username, updatedAt, createdAt } = res
-    //       this.username = username
-    //       this.updatedAt = updatedAt
-    //       this.createdAt = createdAt
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //     })
-    //     .finally(() => (this.isLoading = false))
-    // }
-    // },
-    // methods: {
-    //   getDates: (dates) => {
-    //     console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
-    //     // 取得した日付をイベントに渡す
-    //   },
-    //   filter (val, search) {
-    //     return val === search
-    //   }
+      fetch('/auth/search')
+        .then(res => res.json())
+        .then(res => {
+          const { name } = res
+          this.name = name
+        })
+      //       .catch(err => {
+      //         console.log(err)
+      //       })
+      //       .finally(() => (this.isLoading = false))
+      //   }
+      // },
+      // methods: {
+      //   getDates: (dates) => {
+      //     console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
+      //     // 取得した日付をイベントに渡す
+      //   },
+      //   filter (val, search) {
+      //     return val === search
+      //   }
     }
   }
 }

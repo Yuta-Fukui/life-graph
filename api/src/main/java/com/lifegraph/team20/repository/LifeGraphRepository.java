@@ -57,11 +57,9 @@ public class LifeGraphRepository {
      jdbcTemplate.update("update parent_chart set updated_at = now() where user_id =" + userId);
     }
 
-    public Boolean existsByUserId(long userId) {
-        final String sql = "select count(( user_id = " + userId + ") or null) from parent_chart";
-        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-        return 1 <= count;
-    }
+
+
+
 
 }
 

@@ -51,6 +51,7 @@ public class LifeGraphsService {
     } else {
       // insert
       parentId = parentRepository.insert(userId);
+
     }
     return parentId;
   }
@@ -74,19 +75,9 @@ public class LifeGraphsService {
       // 更新した時にすでにageが存在する場合、エラーを出す
     }
 
- // Idを取得することができるようにする
-
   }
 
   public void deleteChild(long Id, LifeGraphData data) {
-
-   // userIdが一致するかどうか確認する
-   if(childRepository.existsByUserId(data.getUserId())) {
-
-   // 一致すればメソッドが実行される
      childRepository.deleteChild(data.getId());
    }
-    // 一致しなければエラーステータス
-
-  }
 }
