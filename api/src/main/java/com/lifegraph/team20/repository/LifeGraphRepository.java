@@ -73,7 +73,7 @@ public class LifeGraphRepository {
 
     // 更新日時を更新する
     public void updateNowTime(long userId) {
-     jdbcTemplate.update("update parent_chart set updated_at = convert_tz(now(),Europe/London,Asia/Tokyo) where user_id = " + userId);
+     jdbcTemplate.update("update parent_chart set updated_at = convert_tz(now(),'Europe/London','Asia/Tokyo') where user_id = " + userId);
     }
 
   //   public List<ChildChart> selectChilds(long userId) {
