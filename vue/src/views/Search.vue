@@ -90,7 +90,7 @@
       </v-toolbar>
       <v-divider />
       <v-expand-transition>
-        <!-- <v-content v-if="model"> -->
+       <v-content v-if="model">
         <v-card flat class="mx-6 mt-6" height="60">
           <v-row v-for="(field, i) in fields"
                  :key="i"
@@ -123,7 +123,7 @@
             </v-col>
           </v-row>
         </v-card>
-        <!-- </v-content> -->
+       </v-content>
         <!-- <v-toolbar>
           <li v-for="(index,j) in users" :key="j">
             <v-col v-for="(field, i) in fields2"
