@@ -80,7 +80,7 @@
             >
               <v-col v-if="field.key === 'name'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
+                <v-card-text v-text="fields[3].value" />
               </v-col>
               <v-col v-else-if="field.key === 'created'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
@@ -88,7 +88,7 @@
               </v-col>
               <v-col v-else-if="field.key === 'updated'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
+                <v-card-text v-text="fields[0].value" />
               </v-col>
             </v-row>
           </v-toolbar>
