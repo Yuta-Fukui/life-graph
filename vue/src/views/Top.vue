@@ -29,7 +29,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col v-show="show" cols="12" sm="6" md="4">
+        <v-col cols="12" sm="6" md="4">
           <v-card
             id="topEntry"
             class="mx-auto"

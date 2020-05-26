@@ -175,8 +175,8 @@ export default {
   components: {
     Header
   },
-  dialog: false,
   data: () => ({
+    dialog: false,
     // データテーブルのカラムとvalue名
     headers: [
       {
@@ -219,9 +219,6 @@ export default {
     }
   },
   watch: {
-    dialog (val) {
-      val || this.close()
-    },
     showContents (newContents) {
       this.setContents()
     }
@@ -272,7 +269,7 @@ export default {
     },
     // モーダルを閉じ,
     close () {
-      this.dialog = !this.dialog
+      this.dialog = false
       // editedItemの更新
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
