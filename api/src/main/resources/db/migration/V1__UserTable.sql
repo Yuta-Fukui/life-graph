@@ -54,36 +54,3 @@ CREATE TABLE `child_chart` (
    UNIQUE KEY `parent_id` (`parent_id`,`age`),
    CONSTRAINT `child_chart_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `parent_chart` (`id`)
  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-insert into `users` (
-`username`,`password`,`email`) 
-values 
-("一般ユーザー","password","user.account@seattleconsulting.co.jp"),
-("管理者","password","admin.account@seattleconsulting.co.jp"),
-("オーナー","password","mod.account@seattleconsulting.co.jp");
-
-
-insert into `users` (
-`username`,`password`,`email`) 
-values 
-("めし","testtest","yuta.fukui@seattleconsulting.co.jp"), 
-("mei","testtest","mei.kishida@seattleconsulting.co.jp"), 
-("須田ちゃん","testtest","mizuki.suda@seattleconsulting.co.jp"),
-("simoharaguchi","testtest","reiki.shimoharaguchi@seattleconsulting.co.jp"),
-("直也","testtest","naoya.hayashi@seattleconsulting.co.jp"),
-("ヤマト","testtest","yamato.takezaki@seattleconsulting.co.jp"),
-("済","password","login.successful@seattleconsulting.co.jp");
-
-insert into `user_roles` (
-`user_id`,`role_id`) 
-values 
-("1","1"),
-("2","3"),
-("3","2"),
-("4","1"),
-("5","1"),
-("6","1"),
-("7","1"),
-("8","1"),
-("9","1"),
-("10","1");
