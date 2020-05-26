@@ -20,7 +20,7 @@ export default {
   },
   actions: {
     async usersContents ({ commit }, userId) {
-      const url = '/api/auth/reference?userID=' + userId
+      const url = '/api/auth/reference/' + userId
       await axios.get(url).then((res) => {
         commit('usersContents', res.data)
       })
