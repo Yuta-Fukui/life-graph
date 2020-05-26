@@ -97,7 +97,7 @@ export default {
 
 <style>
 #login {
-  background-color: '#F4F2EC';
+  background-color: #f4f2ec;
 }
 .logo {
   text-align: center;

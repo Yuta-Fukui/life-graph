@@ -80,10 +80,12 @@
           </v-card>
         </v-col> -->
       </v-row>
-      <v-row justify="center">
-        <div>
-          <Chart />
-        </div>
+      <v-row justify="center" class="mb-10">
+        <v-col class="mr-10" cols="12" sm="12" md="8" lg="6">
+          <v-card class="pa-10">
+            <Chart />
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </v-app>

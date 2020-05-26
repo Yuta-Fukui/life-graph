@@ -69,7 +69,7 @@ export default {
 </script>
 <style>
 #signUp{
-  background-color: '#F4F2EC';
+  background-color: #f4f2ec;
 }
 .logo{
   text-align: center;

@@ -8,7 +8,7 @@ import lombok.Data;
 public class ChildChart {
 // フィールド（クラス直下の属性郡）
   private long id;
-  private long parentId;
+  private long parent_id;
   private int age;
   private int score;
   private String comment;

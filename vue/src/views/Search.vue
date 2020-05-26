@@ -7,6 +7,7 @@
       width="auto"
       color="#F4F2EC"
       flat
+      class="mx-10"
     >
       <v-row justify="center">
         <v-col cols="6"
@@ -33,7 +34,6 @@
               cache-items
               flat
               hide-details
-              solo-inverted
             />
           </v-card-text>
         </v-col>
@@ -90,34 +90,40 @@
       </v-toolbar>
       <v-divider />
       <v-expand-transition>
-        <v-content v-if="model">
-          <v-toolbar>
-            <v-row v-for="(field, i) in fields"
-                   :key="i"
-                   color="#495183"
-                   class="ma-2"
-            >
-              <v-col v-if="field.key === 'name'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-              <v-col v-else-if="field.key === 'created'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-              <v-col v-else-if="field.key === 'updated'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-            </v-row>
-          </v-toolbar>
-          <v-card-actions>
+        <!-- <v-content v-if="model"> -->
+        <v-card flat class="mx-6 mt-6" height="60">
+          <v-row v-for="(field, i) in fields"
+                 :key="i"
+                 color="#495183"
+          >
+            <v-col v-if="field.key === 'name'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+            <v-col v-else-if="field.key === 'created'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+            <v-col v-else-if="field.key === 'updated'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+          </v-row>
+          <v-row right>
+            <v-col v-for="n in 3"
+                   :key="n"
+                   cols="sm"
+            />
+            <v-col />
             <!-- <v-btn to="/reference"> -->
-            <v-btn color="FF6F60" class="white--text" @click="reference()">
-              グラフを表示する
-            </v-btn>
-          </v-card-actions>
-        </v-content>
+            <v-col>
+              <v-btn color="#FF625C" class="my-2 white--text" @click="reference()">
+                グラフを表示する
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card>
+        <!-- </v-content> -->
         <!-- <v-toolbar>
           <li v-for="(index,j) in users" :key="j">
             <v-col v-for="(field, i) in fields2"
@@ -150,6 +156,7 @@
         <v-btn
           :disabled="!model"
           color="grey darken-3"
+          outlined
           @click="model = null"
         >
           Clear
@@ -292,7 +299,7 @@ export default {
     reference () {
       const Id = this.model
       // this.$store.dispatch('setUserId', { Id: Id.id })
-      this.$store.commit('resetContens')
+      this.$store.commit('resetContents')
       this.$store.dispatch('usersContents', Id.id)
       this.$router.push('/reference')
     }
