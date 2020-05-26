@@ -87,6 +87,7 @@ export default {
     },
     logout () {
       this.$store.commit('delete')
+      this.$store.commit('resetContents')
       this.$router.push('/')
     }
   }
