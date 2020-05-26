@@ -80,11 +80,11 @@
             >
               <v-col v-if="field.key === 'name'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="fields[3].value" />
+                <v-card-text v-text="fields[1].value" />
               </v-col>
               <v-col v-else-if="field.key === 'created'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
+                <v-card-text v-text="fields[3].value" />
               </v-col>
               <v-col v-else-if="field.key === 'updated'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
