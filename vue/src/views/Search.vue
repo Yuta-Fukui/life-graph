@@ -7,7 +7,6 @@
       width="auto"
       color="#F4F2EC"
       flat
-      class="mx-10"
     >
       <v-row justify="center">
         <v-col cols="6"
@@ -37,27 +36,9 @@
             />
           </v-card-text>
         </v-col>
-        <v-col />
-        <!-- <v-col cols="3">
-          <v-card-text>
-            <vue-daterange-picker
-              dates-format="YYYY/MM/DD"
-              format="YYYY/MM/DD"
-              title-format="YYYY年 M月"
-              :items_2="searchByData"
-              :start-date="TwoWeeksAgo"
-              :end-date="Date()"
-              :search-input.sync="getDates"
-              start-place-holder="日時検索"
-              end-place-holder=""
-              large
-              @get-dates="getDates"
-            />
-          </v-card-text>
-        </v-col> -->
       </v-row>
       <v-toolbar max-width="auto" max-height="50"
-                 class="mx-2" color="#495183"
+                 class="mx-10" color="#495183"
                  dark
                  flat
       >
@@ -67,7 +48,7 @@
         <v-spacer />
       </v-toolbar>
       <v-toolbar max-width="auto" max-height="50"
-                 class="mx-2" color="#495183"
+                 class="mx-10" color="#495183"
                  dark flat
       >
         <v-row>
@@ -90,73 +71,46 @@
       </v-toolbar>
       <v-divider />
       <v-expand-transition>
-       <v-content v-if="model">
-        <v-card flat class="mx-6 mt-6" height="60">
-          <v-row v-for="(field, i) in fields"
-                 :key="i"
-                 color="#495183"
-          >
-            <v-col v-if="field.key === 'name'">
-              <!-- <v-card-subtitle v-text="field.key" /> -->
-              <v-card-text v-text="field.value" />
-            </v-col>
-            <v-col v-else-if="field.key === 'created'">
-              <!-- <v-card-subtitle v-text="field.key" /> -->
-              <v-card-text v-text="field.value" />
-            </v-col>
-            <v-col v-else-if="field.key === 'updated'">
-              <!-- <v-card-subtitle v-text="field.key" /> -->
-              <v-card-text v-text="field.value" />
-            </v-col>
-          </v-row>
-          <v-row right>
-            <v-col v-for="n in 3"
-                   :key="n"
-                   cols="sm"
-            />
-            <v-col />
-            <!-- <v-btn to="/reference"> -->
-            <v-col>
-              <v-btn color="#FF625C" class="my-2 white--text" @click="reference()">
-                グラフを表示する
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-card>
-       </v-content>
-        <!-- <v-toolbar>
-          <li v-for="(index,j) in users" :key="j">
-            <v-col v-for="(field, i) in fields2"
+        <v-content v-if="model">
+          <v-toolbar class="mx-10">
+            <v-row v-for="(field, i) in fields"
                    :key="i"
-                   color="#26A69A"
-                   dark
+                   color="#495183"
+                   class="ma-2"
             >
-              <v-col v-if="field[j].key === 'name'">
-                iiii
+              <v-col v-if="field.key === 'name'">
+                <!-- <v-card-subtitle v-text="field.key" /> -->
+                <v-card-text v-text="field.value" />
               </v-col>
-              <v-col v-else-if="field[j].key === 'created'">
-                ooooo
-                <v-card-text v-text="field[j].value" />
+              <v-col v-else-if="field.key === 'created'">
+                <!-- <v-card-subtitle v-text="field.key" /> -->
+                <v-card-text v-text="field.value" />
               </v-col>
-              <v-col v-else-if="field[j].key === 'updated'">
-                  ppppppppp
-                <v-card-text v-text="field[j].value" />
+              <v-col v-else-if="field.key === 'updated'">
+                <!-- <v-card-subtitle v-text="field.key" /> -->
+                <v-card-text v-text="field.value" />
               </v-col>
-            </v-col>
-            <v-card-actions>
-              <v-btn @click="reference()">
-                表示
-              </v-btn>
-            </v-card-actions>
-          </li>
-        </v-toolbar> -->
+            </v-row>
+          </v-toolbar>
+          <v-card-actions>
+            <!-- <v-btn to="/reference"> -->
+            <v-row justify="center">
+              <v-col>
+                <v-btn absolute right large color="#FF625C" class="white--text mt-4 mr-4" @click="reference()">
+                  グラフを表示する
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-content>
       </v-expand-transition>
       <v-card-actions>
         <v-spacer />
         <v-btn
+          absolute left
           :disabled="!model"
-          color="grey darken-3"
           outlined
+          class="mt-4 ml-4"
           @click="model = null"
         >
           Clear
@@ -299,7 +253,7 @@ export default {
     reference () {
       const Id = this.model
       // this.$store.dispatch('setUserId', { Id: Id.id })
-      this.$store.commit('resetContents')
+      this.$store.commit('resetContens')
       this.$store.dispatch('usersContents', Id.id)
       this.$router.push('/reference')
     }
