@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: life_graph_database
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-      TZ: 'Asia/Tokyo'
+      TZ: 'UTC'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
     - ./mysql/data:/var/lib/mysql
