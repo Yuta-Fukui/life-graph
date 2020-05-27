@@ -71,11 +71,6 @@
       </v-toolbar>
       <v-divider />
       <v-expand-transition>
-<<<<<<< HEAD
-        <v-content v-if="model">
-          <v-toolbar class="mx-10">
-            <v-row v-for="(field, i) in fields"
-=======
       <v-content v-if="model">
         <v-card flat class="mx-6 mt-6" height="60">
           <v-row v-for="(field, i) in fields"
@@ -113,7 +108,6 @@
         <!-- <v-toolbar>
           <li v-for="(index,j) in users" :key="j">
             <v-col v-for="(field, i) in fields2"
->>>>>>> dc1ee4564e9ec3cd0f4af5a5dfc754913c210256
                    :key="i"
                    color="#495183"
                    class="ma-2"
