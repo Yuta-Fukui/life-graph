@@ -122,7 +122,6 @@
     </v-card>
   </v-app>
 </template>
-
 <script>
 import moment from 'moment'
 import Header from '../components/Header.vue'
@@ -256,10 +255,11 @@ export default {
       return val === search
     },
     reference () {
-      const Id = this.model
+      const Id = this.model.user_id
       // this.$store.dispatch('setUserId', { Id: Id.id })
-      this.$store.commit('resetContens')
-      this.$store.dispatch('usersContents', Id.id)
+      // this.$store.commit('resetContens')
+      console.log(Id)
+      this.$store.dispatch('usersContents', Id)
       this.$router.push('/reference')
     }
   }
