@@ -5,7 +5,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-btn id="returnBtn" class="mt-10" to="/life-graph/lists" outlined large color="#495183">
+          <v-btn id="returnBtn" class="mt-10" to="/life-graph/lists" outlined large color="#495183" @click="reset">
             戻る
           </v-btn>
         </v-col>
@@ -20,11 +20,9 @@
     </v-container>
   </v-app>
 </template>
-
 <script>
 import ChartRef from '../chart/ChartRef'
 import Header from '../components/Header.vue'
-
 export default {
   name: 'Reference',
   //     extends: Radar,
@@ -74,13 +72,13 @@ export default {
   //     }
   //   }
   // }
-
-  data: () => ({
-    //
-  })
+  methods: {
+    reset () {
+      this.$store.commit('resetContens')
+    }
+  }
 }
 </script>
-
 <style>
 #reference {
   background-color: #f4f2ec;
