@@ -257,8 +257,7 @@ export default {
     reference () {
       const Id = this.model.user_id
       // this.$store.dispatch('setUserId', { Id: Id.id })
-      // this.$store.commit('resetContens')
-      console.log(Id)
+      this.$store.commit('resetContens')
       this.$store.dispatch('usersContents', Id)
       this.$router.push('/reference')
     }
