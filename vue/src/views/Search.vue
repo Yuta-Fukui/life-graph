@@ -78,17 +78,17 @@
                    color="#495183"
                    class="ma-2"
             >
-              <v-col v-if="field.key === 'username'">
+              <v-col v-if="field.key === 'name'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="fields[0].value" />
+                <v-card-text v-text="field.value" />
               </v-col>
-              <v-col v-else-if="field.key === 'created_at'">
+              <v-col v-else-if="field.key === 'created'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="convertDate(fields[2].value)" />
+                <v-card-text v-text="field.value" />
               </v-col>
-              <v-col v-else-if="field.key === 'updated_at'">
+              <v-col v-else-if="field.key === 'updated'">
                 <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="convertDate(fields[3].value)" />
+                <v-card-text v-text="field.value" />
               </v-col>
             </v-row>
           </v-toolbar>
@@ -154,6 +154,7 @@ export default {
   computed: {
     fields () {
       if (!this.model) return []
+      debugger
       // console.log(Object.this.model)
       return Object.keys(this.model).map(key => {
         return {
@@ -173,17 +174,17 @@ export default {
     },
     items () {
       return this.entries.map(entry => {
-        const name = entry.username.length > this.descriptionLimit
-          ? entry.username.slice(0, this.descriptionLimit)
-          : entry.username
+        const name = entry.name.length > this.descriptionLimit
+          ? entry.name.slice(0, this.descriptionLimit)
+          : entry.name
         return Object.assign({}, entry, { name })
       })
     },
     items2 () {
       return this.$store.state.search.users.map(entry => {
-        const name = entry.username.length > this.descriptionLimit
-          ? entry.username.slice(0, this.descriptionLimit)
-          : entry.username
+        const name = entry.name.length > this.descriptionLimit
+          ? entry.name.slice(0, this.descriptionLimit)
+          : entry.name
         return Object.assign({}, entry, { name })
       })
     },
@@ -192,11 +193,6 @@ export default {
     },
     loaded () {
       return this.$store.state.search.loaded
-    },
-    convertDate: function () {
-      return function (date) {
-        return moment(date).format('YYYY/MM/DD HH:mm')
-      }
     }
   },
   watch: {
@@ -267,18 +263,15 @@ export default {
 
 <style>
 #search {
-  background-color: #f4f2ec;
+  background-color:#F4F2EC
 }
-
 img {
-  display: none;
+  display:none
 }
-
 .calender {
-  color: #f4f2ec;
+  color:#F4F2EC
 }
-
-#ser {
-  padding: 20px;
+#ser{
+  padding:20px
 }
 </style>

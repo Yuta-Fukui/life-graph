@@ -53,18 +53,18 @@ export default {
     required: value => !!value || '必ず入力してください',
     show: false
   }),
-  // token関数でtokenの値を取得する
-  computed: {
-    token () {
-      return this.$store.state.auth.token
-    }
-  },
-  // token関数の監視を行う
-  watch: {
-    token (newToken) {
-      this.$router.push('/top')
-    }
-  },
+  // // token関数でtokenの値を取得する
+  // computed: {
+  //   token () {
+  //     return this.$store.state.auth.token
+  //   }
+  // },
+  // // token関数の監視を行う
+  // watch: {
+  //   token (newToken) {
+  //     this.$router.push('/top')
+  //   }
+  // },
   methods: {
     login () {
       if (this.$refs.form.validate()) {
