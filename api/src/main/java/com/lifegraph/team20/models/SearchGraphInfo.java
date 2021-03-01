@@ -11,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class SearchGraphInfo {
   private String username;
-  private int user_id;
+  private long user_id;
   private LocalDateTime created_at;
   private LocalDateTime updated_at;
 }
